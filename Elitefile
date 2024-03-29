@@ -1,0 +1,31 @@
+required_version is 0.1
+
+set pre as "./src/"
+set add as ""
+set compiler_params as "-std=c++20"
+
+set source_files as "{add}{pre}environment.cpp
+                     {add}{pre}token.cpp
+                     {add}{pre}expr.cpp
+                     {add}{pre}interpreter.cpp
+                     {add}{pre}lox_class.cpp
+                     {add}{pre}lox_function.cpp
+                     {add}{pre}lox_instance.cpp
+                     {add}{pre}parser.cpp
+                     {add}{pre}resolver.cpp
+                     {add}{pre}scanner.cpp
+                     {add}{pre}stmt.cpp
+                     {add}{pre}lox.cpp"
+
+for signal "start" [
+  for specific "windows" [
+    # variables are lazy evaluated so, until the evaluation stage, variables don't being read.
+    set add as "/Tp"
+    set compiler_params as "/EHsc /std:c++20 /MP /W0 /DWIN64"
+    use exec "cl.exe {compiler_params} {source_files} /Felox.exe"
+  ]
+
+  for specific "linux" [
+    use exec "c++ {compiler_params} {source_files} -o lox"
+  ]
+]
