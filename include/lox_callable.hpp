@@ -15,10 +15,10 @@ class Interpreter;
 
 class LoxCallable {
 public:
-	[[nodiscard]] virtual int arity() = 0;
-	[[nodiscard]] virtual Object call(Interpreter &interpreter,
-																		std::vector<Object> arguments) = 0;
-	[[nodiscard]] virtual std::string to_string() = 0;
-	virtual ~LoxCallable() = default;
+  [[nodiscard]] virtual int arity() = 0;
+  [[nodiscard]] virtual Object call(Interpreter &interpreter,
+                                    std::vector<Object> arguments) = 0;
+  [[nodiscard]] virtual std::string to_string() = 0;
+  virtual ~LoxCallable() = default;
 };
 }// namespace loxplusplus

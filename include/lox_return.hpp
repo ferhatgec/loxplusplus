@@ -13,7 +13,7 @@
 namespace loxplusplus {
 class LoxReturnException : std::exception {
 public:
-	LoxReturnException(Object value) : value{value} {}
-	const Object value;
+  LoxReturnException(Object value) : value{value} {}
+  const Object value;
 };
 }// namespace loxplusplus

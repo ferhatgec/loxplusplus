@@ -27,20 +27,20 @@ class LoxClass;
 class LoxInstance;
 
 using Object =
-	std::variant<std::string, long double, bool, std::nullptr_t,
-							 std::shared_ptr<LoxFunction>, std::shared_ptr<LoxClass>,
-							 std::shared_ptr<LoxInstance>>;
+  std::variant<std::string, long double, bool, std::nullptr_t,
+               std::shared_ptr<LoxFunction>, std::shared_ptr<LoxClass>,
+               std::shared_ptr<LoxInstance>>;
 
 class Token {
 public:
-	Token(TokenType type, std::string lexeme, Object literal, int line) noexcept;
-	~Token() noexcept;
-	[[nodiscard]] std::string to_string() const noexcept;
+  Token(TokenType type, std::string lexeme, Object literal, int line) noexcept;
+  ~Token() noexcept;
+  [[nodiscard]] std::string to_string() const noexcept;
 
 public:
-	const TokenType type;
-	const std::string lexeme;
-	const Object literal;
-	const int line;
+  const TokenType type;
+  const std::string lexeme;
+  const Object literal;
+  const int line;
 };
 }// namespace loxplusplus

@@ -13,10 +13,10 @@
 namespace loxplusplus {
 class RuntimeError : public std::runtime_error {
 public:
-	RuntimeError(const Token &token, std::string_view message)
-			: std::runtime_error{message.data()}, token{token} {}
+  RuntimeError(const Token &token, std::string_view message)
+      : std::runtime_error{message.data()}, token{token} {}
 
 public:
-	const Token &token;
+  const Token &token;
 };
 }// namespace loxplusplus
