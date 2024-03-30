@@ -189,7 +189,7 @@ Parser::Parser(const std::vector<Token> &tokens)
     Token equals = this->previous();
     std::shared_ptr<Expr> value = std::move(this->assignment());
     if (const std::shared_ptr<Variable> &variable = std::dynamic_pointer_cast<Variable>(expr);
-        expr != nullptr)
+        variable != nullptr)
       return std::make_shared<Assign>(variable->name, std::move(value));
     else if (const std::shared_ptr<Get> get = std::dynamic_pointer_cast<Get>(expr);
              get != nullptr)
@@ -267,7 +267,7 @@ Parser::Parser(const std::vector<Token> &tokens)
   if (!this->check(TokenType::RIGHT_PAREN)) {
     do {
       if (arguments.size() >= 255) {
-        error(this->peek(), "Can't have more than 255 arguments.");
+        error(this->peek(), "can't have more than 255 arguments.");
       }
       arguments.push_back(this->expression());
     } while (this->match({TokenType::COMMA}));

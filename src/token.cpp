@@ -19,17 +19,17 @@ Token::~Token() noexcept {
 
 [[nodiscard]] std::string Token::to_string() const noexcept {
   std::string literal_text;
-  switch (type) {
+  switch (this->type) {
   case TokenType::IDENTIFIER: {
-    literal_text = lexeme;
+    literal_text = this->lexeme;
     break;
   }
   case TokenType::STRING: {
-    literal_text = std::get<StringIndex>(literal);
+    literal_text = std::get<StringIndex>(this->literal);
     break;
   }
   case TokenType::NUMBER: {
-    literal_text = std::to_string(std::get<LongDoubleIndex>(literal));
+    literal_text = std::to_string(std::get<LongDoubleIndex>(this->literal));
     break;
   }
   case TokenType::TRUE: {
@@ -45,6 +45,6 @@ Token::~Token() noexcept {
     break;
   }
   }
-  return loxplusplus::to_string(type) + " " + lexeme + " " + literal_text;
+  return loxplusplus::to_string(this->type) + " " + this->lexeme + " " + literal_text;
 }
 }// namespace loxplusplus

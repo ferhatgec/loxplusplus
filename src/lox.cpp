@@ -47,6 +47,31 @@ int main(int argc, char *argv[]) {
   } else if (argc == 2) {
     run(read_file(argv[1]));
   } else {
-    // TODO: implement REPL
+    std::string input, temp;
+    std::cout << "Running lox++ REPL.\n"
+                 "Use 'exit' to exit.\n"
+                 "Use '\\' character to continue code on new line.\n";
+    while(true) {
+      std::cout << "> ";
+      std::getline(std::cin, input);
+      if(input == "exit")
+        break;
+      if(!input.empty() && input.back() == '\\') {
+        input.pop_back();
+        std::cout << "  ";
+        while(true) {
+          std::getline(std::cin, temp);
+          if(temp.back() == '\\') {
+            temp.pop_back();
+            input.append(temp);
+          } else {
+            input.append(temp);
+            break;
+          }
+        }
+      }
+      run(input.data());
+      had_error = had_runtime_error = false;
+    }
   }
 }
