@@ -318,17 +318,15 @@ void Interpreter::check_number_operands(const Token &op, const Object &left,
 }
 
 std::string Interpreter::stringify(const Object &object) {
-  if (object.index() == NullptrIndex)
-    return "nil";
-  if (object.index() == LongDoubleIndex) {
+  switch (object.index()) {
+  case StringIndex: {
+    return std::get<StringIndex>(object);
+  }
+  case LongDoubleIndex: {
     std::string text = std::to_string(std::get<LongDoubleIndex>(object));
     if (text.ends_with(".0"))
       text = text.substr(0, text.length() - 2);
     return text;
-  }
-  switch (object.index()) {
-  case StringIndex: {
-    return std::get<StringIndex>(object);
   }
   case BoolIndex: {
     return std::get<BoolIndex>(object) ? "true" : "false";
